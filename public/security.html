@@ -1,0 +1,111 @@
+<div class="container">
+
+<section class="col-md-10 col-md-offset-1">
+    <div class="row" style="text-align: center;">
+      <h1>{{room}}</h1>
+    </div>
+
+</section>
+
+  <div class="col-md-10 col-md-offset-1" ng-repeat="info in infos">
+    <div class="panel">
+    <ul class="list-group">
+
+    <a class="list-group-item list-group-item-action"><strong>Loppis:</strong> {{ info.name }}</a>
+    <a class="list-group-item list-group-item-action"><strong>Startar:</strong>  {{ info.start_date }}</a>
+    <a class="list-group-item list-group-item-action"><strong>Slutar:</strong>  {{ info.end_date }}</a>
+    <a class="list-group-item list-group-item-action"><strong>Värd:</strong>  {{ info.u_id }}</a>
+
+    <a class="list-group-item list-group-item-action"><strong>Info om eventet:</strong>  {{ info.event_text }}</a>
+    <a class="list-group-item list-group-item-action"><strong>Kategori:</strong>  {{ info.category_ids }}</a>
+  </ul>
+</div>
+</div>
+
+<!--
+<div class="col-md-4 text-center"> 
+<a href ng-click="goCreate = !goCreate">
+<button type="button" class="btn btn-success">Attend Event</button> 
+<div ng-show=goCreate>
+
+<button type="button" class="btn btn-default">Jag är Säljare</button>
+<button type="button" class="btn btn-default">Jag är Köpare</button>
+</a>
+</div>
+</div>-->
+
+
+<div class="row">
+<div class="col-md-12 school-options-dropdown text-center">
+<div class="dropdown btn-group">
+    <button class="btn btn-success dropdown-toggle" type="button" data-toggle="dropdown">Attend Loppis
+    <span class="caret"></span></button>
+    <ul class="dropdown-menu">
+      <li><a ng-click="sell()">Jag vill sälja loppisfynd</a></li>
+      <li><a ng-click="buy()">Jag vill köpa loppisfynd</a></li>
+    </ul>
+  </div>
+</div>
+</div>
+
+<!--
+    <div style="border: 2px solid black">
+      <div ng-repeat="entry in entries track by $index">
+          {{entry}} <br>
+      </div>
+    </div>
+-->
+
+<!--n<input class="form-control" type="text" ng-model="mess" id="loginInputField" required autofocus>
+</form>-->
+<!--ng-model används i controllers.js för logiken-->
+<!--ng-model används i controllers.js för logiken-->
+
+<div class="col-md-10 col-md-offset-1">
+<label for="message">Meddelande:</label>
+
+
+<!--Skicka Meddelande-->
+<form ng-submit="done()">
+      <input type="message" class="form-control" type="text" placeholder="Skriv ditt meddelande här" ng-model="message" id="messageInputField" required autofocus>
+      <input class="btn btn-primary" type="submit" id="messageSendbtn" value="Skicka">
+</form>
+</div>
+
+<!--Skicka Meddelande-->
+<section class="col-md-10 col-md-offset-1">
+
+
+<div class="col-md-10 col-md-offset-1" ng-repeat="post in posts">
+<div class="panel panel-default">
+<div class="panel-heading"> 
+<strong>Användare: {{post.username}}</strong> <span class="text-muted">skrev på <strong>{{post.event_name}}</strong>  den {{post.timestamp}}</span>
+</div>
+<div class="panel-body">
+{{post.message}}
+</div><!-- /panel-body-->
+</div><!-- /pane-heading -->
+</div><!-- /well -->
+<!-- /panel panel-default -->
+</section>
+</div>
+
+<div class="panel text-center">
+
+<a href ng-click="goCreate = !goCreate" class="btn btn-info btn-lg"><span class="glyphicon glyphicon-plus-sign"></span> Visa gästlista</a>
+
+<div ng-show=goCreate>
+<ul class="list-group">
+<p class="list-group-item" ng-repeat="attending in attendings">
+
+<span class="glyphicon glyphicon-user"></span> <span class="text-muted">Användare: </span> UserPlaceholder <span class="glyphicon glyphicon-tag"></span> <span class="text-muted">Köpa/Sälja: </span> {{ attending.attendreason }} </p>
+</ul> 
+</div>
+</a>
+</div>
+
+<script type="text/javascript">
+$('#sandbox-container .input-group.date').datepicker({
+    format: "yyyy-mm-dd"
+});
+</script>

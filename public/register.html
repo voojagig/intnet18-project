@@ -1,0 +1,35 @@
+<div class="module">
+	<h1>Registrera ny användare</h1>
+	<form ng-submit="addUser()" name="newForm">
+
+	  <div class="form-group">
+	    <label for="emailInput">Emailadress</label>
+	    <input type="email" ng-blur="checkEmail()" ng-class="{unvalid: toggleClass()}" class="form-control" ng-model="email" id="emailInput" aria-describedby="emailHelp" placeholder="Emailadress">
+	    <small id="emailHelp" class="form-text text-muted">Så att vi kan kontakta dig framöver.</small>
+	  </div>
+
+	  <div class="form-group">
+	    <label for="usernameInput">Användarnamn</label>
+	    <input type="username" class="form-control" ng-model="username" id="usernameInput" placeholder="Username">
+	  </div> 
+
+	  <div class="form-group">
+	    <label for="exampleInputPassword1">Lösenord</label>
+	    <input type="password" class="form-control" ng-model="password" id="exampleInputPassword1" placeholder="Password">
+	  </div>
+
+	  <div class="form-group">
+        <label for="repeatSelect"> Vilken typ av loppisar är du intresserad av? </label>
+          <label ng-repeat="category in categories">
+              <input
+                type="checkbox"
+                name="selectedCategories[]"
+                value="{{category._id}}"
+                ng-model="category.selected"
+              > {{category.category_name}}
+            </label>
+      </div>
+
+	  <button type="submit" class="btn btn-primary">Submit</button>
+	</form>
+</div>

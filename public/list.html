@@ -1,0 +1,206 @@
+<div class="container">
+
+  <div class="text-box col-md-4 col-md-offset-4" style="text-align: center">
+    <h1>Loppisar</h1>
+
+  </div>
+
+  <div class="col-md-4 col-md-offset-8">
+      <div class="alert alert-info alert-dismissable fade in" ng-repeat="alert in alerts" >
+        <a href="" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>Pssst!</strong> Du är kanske intresserad av den nyligen tillagda loppisen {{alert.name}}! <a href="#" class="alert-link" ng-click="redirect(alert)">Klicka här för att se eventet!</a>
+      </div>
+      </div>
+
+</div>
+
+<div class="container">
+<form class="form-horizontal" ng-submit="done()">
+<fieldset>
+<a href ng-click="goCreate = !goCreate" class="btn btn-info btn-lg" style="text-align: center"><span class="glyphicon glyphicon-plus-sign"></span> Lägg till Loppis
+        </a>
+
+<div ng-show=goCreate>
+<!-- Form Name -->
+<div class="form-group">
+<legend class="text-center"><h3>Ange information om din loppis</h3></legend>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="name">Namn</label>  
+  <div class="col-md-4">
+  <input id="name" ng-model="name" id="eventNameInputField" type="text" placeholder="Eventnamn" class="form-control input-md" required autofocus>
+  </div>
+</div>
+
+<!-- Textarea -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="textarea">Beskrivning</label>
+  <div class="col-md-4">                     
+    <textarea class="form-control" ng-model="eventtext" type="eventtext" id="eventtextInputField" placeholder="Beskriv din loppis" name="textarea"></textarea>
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="textinput">Börjar</label>  
+  <div class="col-md-4">
+  <div class="input-group date" id="datepicker" data-provide="datepicker" data-date-format="yyyy-mm-dd">
+  <input type="text" class="form-control" ng-model="start" value="yyyy-mm-dd" id="startInputField" required autofocus>
+<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
+</span>
+</div>
+</div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="textinput">Slutar</label>  
+  <div class="col-md-4">
+  <div class="input-group date" id="datepicker" data-provide="datepicker" data-date-format="yyyy-mm-dd">
+  <input type="text" class="form-control" ng-model="end" value="yyyy-mm-dd" id="endInputField" required autofocus>
+<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
+</span>
+</div>
+</div>
+</div>
+
+<!-- Multiple Checkboxes -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="checkboxes" for="repeatSelect">Kategori</label>
+  <div class="col-md-4">
+  <div class="checkbox">
+          <label ng-repeat="category in categories">
+              <!--
+                - Use `value="{{category.name}}"` to give the input a real value, in case the form gets submitted
+                  traditionally
+                - Use `ng-checked="category.selected"` to have the checkbox checked based on some angular expression
+                  (no two-way-data-binding)
+                - Use `ng-model="category.selected"` to utilize two-way-data-binding. Note that `.selected`
+                  is arbitrary. The property name could be anything and will be created on the object if not present.
+              -->
+              <input
+                type="checkbox"
+                name="selectedCategories[]"
+                value="{{category._id}}"
+                ng-model="category.selected"
+              >  {{ category.category_name }} 
+            </label>
+</div>
+<div class="col-md control-label">
+<input class="btn btn-success" type="submit" id="loginOKBtn" value="Lägg till">
+</div>
+
+</fieldset>
+</form>
+
+</div>
+
+<!--<div class="container">
+
+    
+    <form class="form-inline" ng-submit="done()">
+      <div class="form-group">
+        <label for="name">Namnge din loppis:</label>
+        ng-model används i controllers.js för logiken
+        <input type="name" class="form-control" type="text" ng-model="name" id="eventNameInputField" required autofocus>
+      </div>
+
+
+      <label for="start">Börjar:</label>
+      <div class="input-group date" id="datepicker" data-provide="datepicker">
+      <input type="text" class="form-control" ng-model="start" value="yyyy-mm-dd" id="startInputField">
+      <span class="input-group-addon">
+        <span class="glyphicon glyphicon-calendar"></span>
+      </span>
+      </div>
+
+      <label for="end">Slutar:</label>
+      <div class="input-group date" data-provide="datetimepicker">
+      <input type="text" class="form-control" ng-model="end" value="yyyy-mm-dd" id="endInputField">
+      <div class="input-group-addon">
+        <span class="glyphicon glyphicon-calendar"></span>
+      </div>
+      </div>
+
+      <div class="form-group">
+        <label for="eventtext">Beskrivning:</label>
+        <input type="eventtext" class="form-control" type="text" ng-model="eventtext" id="eventtextInputField" required autofocus>
+      </div>
+
+      <div>
+        <label for="repeatSelect"> Kategori: </label>
+
+          <label ng-repeat="category in categories">
+              <!--
+                - Use `value="{{category.name}}"` to give the input a real value, in case the form gets submitted
+                  traditionally
+                - Use `ng-checked="category.selected"` to have the checkbox checked based on some angular expression
+                  (no two-way-data-binding)
+                - Use `ng-model="category.selected"` to utilize two-way-data-binding. Note that `.selected`
+                  is arbitrary. The property name could be anything and will be created on the object if not present.
+              
+              <input
+                type="checkbox"
+                name="selectedCategories[]"
+                value="{{category._id}}"
+                ng-model="category.selected"
+              > {{category.category_name}}
+            </label>
+
+
+      </div>
+
+      <input class="btn btn-default" type="submit" id="loginOKBtn" value="Ok">
+
+    </form>
+  </div>
+</div>
+    
+  </div>
+-->
+
+<!--  försökte fixa fint added-meddelande, kanske fixar sen 
+  <div>{{added}}</div>
+  <alert ng-show="{{added}}"" type="{{added}}">
+    <strong>Du har lagt till en loppis i listan!</strong> 
+  </alert> -->
+
+  <section class="col-md-10 col-md-offset-1">
+
+
+    <table  class="table table-hover">
+      <thead>
+        <tr>
+          <th>Loppis</th>
+          <th>Tid</th>
+          <th>Kategori</th>
+          <th>Beskrivning</th>
+        </tr>
+      </thead>
+      <tr ng-repeat="room in rooms">
+        <td><a href ng-click="redirect(room)">{{ room.name }}</a></td>
+        <td>{{ room.start_date }} - {{room.end_date}}</td>
+        <td>{{catnames[$index]}}</td>
+        <td>{{ room.event_text }}</td>
+      </tr>
+    </table>
+    
+  </section>
+
+
+</div>
+
+<script>
+    $(document).ready(function(){
+      var date_input=$('input[name="date"]'); //our date input has the name "date"
+      var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
+      var options={
+        format: 'mm/dd/yyyy',
+        container: container,
+        todayHighlight: true,
+        autoclose: true,
+      };
+      date_input.datepicker(options);
+    })
+</script>
